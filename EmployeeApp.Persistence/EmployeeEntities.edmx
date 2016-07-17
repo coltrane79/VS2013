@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmployeesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="datefrom" />
+            <PropertyRef Name="dateto" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="datefrom" Type="datetime" Nullable="false" />
+          <Property Name="dateto" Type="datetime" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="Street2" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Provice" Type="varchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="Notes" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="pernr" />
+          </Key>
+          <Property Name="pernr" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fullName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="address" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="EmplyPayInfo">
+          <Key>
+            <PropertyRef Name="pernr" />
+            <PropertyRef Name="datefrom" />
+            <PropertyRef Name="dateto" />
+          </Key>
+          <Property Name="pernr" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="datefrom" Type="datetime" Nullable="false" />
+          <Property Name="dateto" Type="datetime" Nullable="false" />
+          <Property Name="dailyWorkHours" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="weeklyWorkHours" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="payRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="overtimefactor" Type="varchar" MaxLength="10" />
+          <Property Name="Notes" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="EmployeesModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmplyPayInfo" EntityType="Self.EmplyPayInfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="datefrom" />
+            <PropertyRef Name="dateto" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="datefrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Street2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Provice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="pernr" />
+          </Key>
+          <Property Name="pernr" Type="Guid" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="Guid" />
+        </EntityType>
+        <EntityType Name="EmplyPayInfo">
+          <Key>
+            <PropertyRef Name="pernr" />
+            <PropertyRef Name="datefrom" />
+            <PropertyRef Name="dateto" />
+          </Key>
+          <Property Name="pernr" Type="Guid" Nullable="false" />
+          <Property Name="datefrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dailyWorkHours" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="weeklyWorkHours" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="payRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="overtimefactor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="EmployeesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmplyPayInfoes" EntityType="Self.EmplyPayInfo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeesModelStoreContainer" CdmEntityContainer="EmployeesEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="EmployeesModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="datefrom" ColumnName="datefrom" />
+                <ScalarProperty Name="dateto" ColumnName="dateto" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Street2" ColumnName="Street2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Provice" ColumnName="Provice" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="EmployeesModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="pernr" ColumnName="pernr" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmplyPayInfoes">
+            <EntityTypeMapping TypeName="EmployeesModel.EmplyPayInfo">
+              <MappingFragment StoreEntitySet="EmplyPayInfo">
+                <ScalarProperty Name="pernr" ColumnName="pernr" />
+                <ScalarProperty Name="datefrom" ColumnName="datefrom" />
+                <ScalarProperty Name="dateto" ColumnName="dateto" />
+                <ScalarProperty Name="dailyWorkHours" ColumnName="dailyWorkHours" />
+                <ScalarProperty Name="weeklyWorkHours" ColumnName="weeklyWorkHours" />
+                <ScalarProperty Name="payRate" ColumnName="payRate" />
+                <ScalarProperty Name="overtimefactor" ColumnName="overtimefactor" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
